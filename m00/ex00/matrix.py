@@ -24,6 +24,11 @@ class Matrix:
         txt += ", \n".join(rows)
         return txt
 
+    def __add__(self, matrix):
+        if self.shape != matrix.shape:
+            print("Error: matrixes must have the same dimensions")
+            return
+        
 # add : only matrices of same dimensions.
 # __add__
 # __radd__
