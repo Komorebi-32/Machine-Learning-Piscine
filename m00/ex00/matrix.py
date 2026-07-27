@@ -1,13 +1,15 @@
 
 
 class Matrix:
-    def __init__(self, data):
-        if type(data) is list:
-            self.data = data
-            self.shape = (len(data), len(data[0]))
-        elif type(data) is tuple:
-            self.shape = data
-            self.data = [[[0] * data[0]], [[0] * data[1]]]
+    # only one __init__ function is allowed so using type()
+    # to know how to initialize the instance attributes
+    def __init__(self, input):
+        if type(input) is list:
+            self.data = input
+            self.shape = (len(input), len(input[0]))
+        elif type(input) is tuple:
+            self.shape = input
+            self.data = [[[0] * input[0]], [[0] * input[1]]]
 
     def __str__(self):
         if self.shape[0] == 1 or self.shape[1] == 1:
