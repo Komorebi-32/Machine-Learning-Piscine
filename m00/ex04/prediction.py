@@ -27,5 +27,5 @@ def predict_(x, theta):
         print("Error: x or theta dimensions are not appropriate.")
         return None
     X = add_intercept(x)
-    y_hat = theta * X
+    y_hat = np.dot(X, theta)
     return y_hat
