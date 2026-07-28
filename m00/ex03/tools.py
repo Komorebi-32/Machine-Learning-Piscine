@@ -20,7 +20,7 @@ def add_intercept(X):
     if X.ndim > 2:
         print("Error: X dimensions are not appropriate.")
         return None
-    n,m = X.shape
+    n, = X.shape
     X0 = np.ones((n,1))
     Xnew = np.hstack((X0, X))
     return Xnew

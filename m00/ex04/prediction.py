@@ -1,4 +1,8 @@
+import sys
+sys.path.insert(0, "../ex03")
+
 import numpy as np
+from tools import add_intercept 
 
 def predict_(x, theta):
     """Computes the vector of prediction y_hat from two non-empty numpy.array.
@@ -22,3 +26,6 @@ def predict_(x, theta):
     if x.ndim != 1 or theta.shape != (2, 1):
         print("Error: x or theta dimensions are not appropriate.")
         return None
+    X = add_intercept(x)
+    y_hat = theta * X
+    return y_hat
