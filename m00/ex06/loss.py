@@ -15,13 +15,13 @@ def loss_elem_(y, y_hat):
     This function should not raise any Exception.
     """
     if not isinstance(y, np.ndarray) or not isinstance(y_hat, np.ndarray):
-        print("Error: x and/or y_hat should be of type numpy.ndarray")
+        print("Error: y and/or y_hat should be of type numpy.ndarray")
         return None
     if y.size == 0 or y_hat.size == 0:
-        print("Error: x and/or y_hat should not be empty")
+        print("Error: y and/or y_hat should not be empty")
         return None
     if y.ndim != 2 or y_hat.ndim != 2 or y.shape != y_hat.shape or y.shape[1] != 1:
-        print("Error: x or y_hat dimensions are not appropriate.")
+        print("Error: y and/or y_hat dimensions are not appropriate.")
         return None
     J_elem = (y_hat - y) ** 2
     return J_elem
