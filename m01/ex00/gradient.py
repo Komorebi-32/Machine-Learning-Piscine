@@ -1,5 +1,8 @@
-import numpy as np
+import sys
+sys.path.insert(0, "../../m00/ex04")
 
+import numpy as np
+from prediction import predict_
 
 def simple_gradient(x, y, theta):
     """Computes a gradient vector from three non-empty numpy.arrays, with a for-loop.
@@ -33,3 +36,10 @@ def simple_gradient(x, y, theta):
     ):
         print("Error: x and/or y and/or theta dimensions are not appropriate.")
         return None
+    x = x.reshape(-1)
+    h = predict_(x, theta)
+    if h is None:
+        return None
+    J0 = 0
+    for hi, yi in zip(h, y):
+        
