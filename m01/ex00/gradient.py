@@ -1,5 +1,6 @@
 import sys
 sys.path.insert(0, "../../m00/ex04")
+sys.path.insert(0, "../../m00/ex03")
 
 import numpy as np
 from prediction import predict_
@@ -41,5 +42,11 @@ def simple_gradient(x, y, theta):
     if h is None:
         return None
     J0 = 0
-    for hi, yi in zip(h, y):
-        
+    J1 = 0
+    for hi, yi, xi in zip(h, y, x):
+        J0 += hi - yi
+        J1 += (hi - yi) * xi
+    J0 /= y.shape[0]
+    J1 /= y.shape[0]
+    J = np.array([[J0], [J1]])
+    return J
