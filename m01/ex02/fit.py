@@ -1,4 +1,8 @@
+import sys
+sys.path.insert(0, "../ex01")
+
 import numpy as np
+from vec_gradient import simple_gradient
 
 def fit_(x, y, theta, alpha, max_iter):
     """
@@ -20,6 +24,8 @@ def fit_(x, y, theta, alpha, max_iter):
         not isinstance(x, np.ndarray)
         or not isinstance(y, np.ndarray)
         or not isinstance(theta, np.ndarray)
+        or not isinstance(alpha, float)
+        or not isinstance(max_iter, int)
     ):
         print("Error: x and/or y and/or theta should be of type numpy.ndarray")
         return None
@@ -33,3 +39,21 @@ def fit_(x, y, theta, alpha, max_iter):
     ):
         print("Error: x and/or y and/or theta dimensions are not appropriate.")
         return None
+    if alpha < 0 or alpha > 1:
+        print("Error: alpha should be between 0 and 1")
+        return None
+    if max_iter <= 0:
+        print("Error: max_iter should be greater than 0")
+        return None
+    iter = 0
+    theta = theta.astype(float)
+    while iter != max_iter:
+        derivative = simple_gradient(x, y, theta)
+        # print(f"derivative == {derivative}")
+        theta = theta - (alpha * derivative)
+        # theta[1] = theta[1] - (alpha * derivative[1])
+        # print(f"theta[0] == {theta[0]}")
+        # print(f"theta[1] == {theta[1]}")
+        iter += 1
+    return theta
+    
