@@ -39,19 +39,19 @@ class MyLinearRegression():
         if (
             not isinstance(x, np.ndarray)
             or not isinstance(y, np.ndarray)
-            or not isinstance(self.theta, np.ndarray)
+            or not isinstance(self.thetas, np.ndarray)
             or not isinstance(self.alpha, float)
             or not isinstance(self.max_iter, int)
         ):
             print("Error: x and/or y and/or theta should be of type numpy.ndarray")
             return None
-        if x.size == 0 or y.size == 0 or self.theta.size == 0:
+        if x.size == 0 or y.size == 0 or self.thetas.size == 0:
             print("Error: x and/or y and/or theta should not be empty")
             return None
         if (
             x.ndim != 2 or y.ndim != 2
             or x.shape != y.shape or y.shape[1] != 1
-            or self.theta.shape != (2, 1)
+            or self.thetas.shape != (2, 1)
         ):
             print("Error: x and/or y and/or theta dimensions are not appropriate.")
             return None
@@ -62,12 +62,12 @@ class MyLinearRegression():
             print("Error: max_iter should be greater than 0")
             return None
         iter = 0
-        self.theta = self.theta.astype(float)
+        self.thetas = self.thetas.astype(float)
         while iter != self.max_iter:
-            derivative = simple_gradient(x, y, self.theta)
-            self.theta = self.theta - (self.alpha * derivative)
+            derivative = simple_gradient(x, y, self.thetas)
+            self.thetas = self.thetas - (self.alpha * derivative)
             iter += 1
-        return self.theta
+        return self.thetas
 
     def predict_(self, x):
         """Computes the vector of prediction y_hat from two non-empty numpy.array.
@@ -82,17 +82,17 @@ class MyLinearRegression():
         Raises:
         This function should not raise any Exceptions.
         """
-        if not isinstance(x, np.ndarray) or not isinstance(self.theta, np.ndarray):
+        if not isinstance(x, np.ndarray) or not isinstance(self.thetas, np.ndarray):
             print("Error: x and/or theta should be of type numpy.ndarray")
             return None
-        if x.size == 0 or self.theta.size == 0:
+        if x.size == 0 or self.thetas.size == 0:
             print("Error: x and/or theta should not be empty")
             return None
-        if x.ndim != 1 or self.theta.shape != (2, 1):
+        if x.ndim != 1 or self.thetas.shape != (2, 1):
             print("Error: x or theta dimensions are not appropriate.")
             return None
         X = add_intercept(x)
-        y_hat = np.dot(X, self.theta)
+        y_hat = np.dot(X, self.thetas)
         return y_hat
 
 
