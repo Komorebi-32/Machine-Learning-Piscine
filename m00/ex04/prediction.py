@@ -18,7 +18,7 @@ def predict_(x, theta):
     This function should not raise any Exceptions.
     """
     if not isinstance(x, np.ndarray) or not isinstance(theta, np.ndarray):
-        print("Error32: x and/or theta should be of type numpy.ndarray")
+        print("Error: x and/or theta should be of type numpy.ndarray")
         return None
     if x.size == 0 or theta.size == 0:
         print("Error: x and/or theta should not be empty")

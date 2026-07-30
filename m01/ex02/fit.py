@@ -49,11 +49,7 @@ def fit_(x, y, theta, alpha, max_iter):
     theta = theta.astype(float)
     while iter != max_iter:
         derivative = simple_gradient(x, y, theta)
-        # print(f"derivative == {derivative}")
         theta = theta - (alpha * derivative)
-        # theta[1] = theta[1] - (alpha * derivative[1])
-        # print(f"theta[0] == {theta[0]}")
-        # print(f"theta[1] == {theta[1]}")
         iter += 1
     return theta
     
