@@ -21,13 +21,13 @@ def plot(x, y, theta):
         or not isinstance(theta, np.ndarray)
         or not isinstance(y, np.ndarray)
     ):
-        print("Error: x and/or theta should be of type numpy.ndarray")
+        print("Error: x and/or y and/or theta should be of type numpy.ndarray")
         return None
     if x.size == 0 or y.size == 0 or theta.size == 0:
-        print("Error: x and/or theta should not be empty")
+        print("Error: x and/or y and/or theta should not be empty")
         return None
     if x.ndim != 1 or y.ndim != 1 or theta.shape != (2, 1):
-        print("Error: x or theta dimensions are not appropriate.")
+        print("plot: Error: x and/or y and/or theta dimensions are not appropriate.")
         return None
 
     # Generate prediction values for the regression line

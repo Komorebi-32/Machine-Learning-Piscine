@@ -27,8 +27,6 @@ class MyLinearRegression():
         Args:
         x: has to be a numpy.ndarray, a vector of dimension m * 1: (number of training examples, 1).
         y: has to be a numpy.ndarray, a vector of dimension m * 1: (number of training examples, 1).
-        theta: has to be a numpy.ndarray, a vector of dimension 2 * 1.
-        alpha: has to be a float, the learning rate
         max_iter: has to be an int, the number of iterations done during the gradient descent
         Returns:
         new_theta: numpy.ndarray, a vector of dimension 2 * 1.
@@ -73,7 +71,6 @@ class MyLinearRegression():
         """Computes the vector of prediction y_hat from two non-empty numpy.array.
         Args:
         x: has to be an numpy.array, a one-dimensional array of size m.
-        theta: has to be an numpy.array, a two-dimensional array of shape 2 * 1.
         Returns:
         y_hat as a numpy.array, a two-dimensional array of shape m * 1.
         None if x and/or theta are not numpy.array.
@@ -89,7 +86,7 @@ class MyLinearRegression():
             print("Error: x and/or theta should not be empty")
             return None
         if x.ndim != 1 or self.thetas.shape != (2, 1):
-            print("Error: x or theta dimensions are not appropriate.")
+            print("predict_ Error: x or theta dimensions are not appropriate.")
             return None
         X = add_intercept(x)
         y_hat = np.dot(X, self.thetas)
