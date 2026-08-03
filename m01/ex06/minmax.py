@@ -1,7 +1,7 @@
 import numpy as np
 
-def zscore(x):
-    """Computes the normalized version of a non-empty numpy.ndarray using the z-score standardization.
+def minmax(x):
+    """Computes the normalized version of a non-empty numpy.ndarray using the min-max standardization.
     Args:
     x: has to be an numpy.ndarray, a vector.
     Returns:
@@ -16,5 +16,5 @@ def zscore(x):
     if x.size == 0:
         print("Error: x should not be empty")
         return None
-    x = (x - x.mean(axis = 0)) / x.std(axis = 0)
+    x = (x - x.min()) / (x.max() - x.min())
     return x
