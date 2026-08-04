@@ -31,6 +31,13 @@ def gradient(x, y, theta):
         print("gradient() Error: x and/or y and/or theta should not be empty")
         return None
     if (
+        x.ndim != 2
+        or y.ndim != 2
+        or theta.ndim != 2
+    ):
+        print("gradient() Error: x, y and theta should be 2D arrays.")
+        return None
+    if (
         x.shape[0] != y.shape[0]
         or y.shape[1] != 1
         or x.shape[1] + 1 != theta.shape[0]
