@@ -4,6 +4,7 @@ sys.path.insert(0, "../../m00/ex03")
 
 
 import numpy as np
+import matplotlib.pyplot as plt
 from gradient_multivar import gradient
 from tools import add_intercept
 
@@ -101,7 +102,10 @@ class MyLinearRegression():
         if x.size == 0 or self.thetas.size == 0:
             print("predict_() Error: x and/or theta should not be empty")
             return None
-        if x.shape[1] + 1 != self.thetas.shape[0] or self.thetas.shape[1] != 1:
+        if x.ndim == 1 and self.thetas.shape != (2, 1):
+            print("predict_ Error: x or theta dimensions are not appropriate.")
+            return None
+        if x.ndim > 1 and (x.shape[1] + 1 != self.thetas.shape[0] or self.thetas.shape[1] != 1):
             print("predict_() Error: x or theta dimensions are not appropriate.")
             return None
         x = add_intercept(x)
@@ -154,3 +158,56 @@ class MyLinearRegression():
             return None
         J_value = np.sum(elem) / (2 * y.shape[0])
         return J_value
+
+    def plot_scatter(self, x, y, xlabel, ylabel):
+        """Plot the data and prediction line from three non-empty numpy.array.
+        Args:
+        x: has to be an numpy.array, a one-dimensional array of size m.
+        y: has to be an numpy.array, a one-dimensional array of size m.
+        theta: has to be an numpy.array, a two-dimensional array of shape 2 * 1.
+        Returns:
+        Nothing.
+        Raises:
+        This function should not raise any Exceptions.
+        """
+        if (
+            not isinstance(x, np.ndarray)
+            or not isinstance(self.thetas, np.ndarray)
+            or not isinstance(y, np.ndarray)
+            or not isinstance(xlabel, str)
+            or not isinstance(ylabel, str)
+        ):
+            print("Error: x and/or y and/or theta should be of type numpy.ndarray")
+            print("xlabel and ylabel should be of type string")
+            return None
+        if x.size == 0 or y.size == 0 or self.thetas.size == 0:
+            print("Error: x and/or y and/or theta should not be empty")
+            return None
+        if x.ndim != 1 or y.ndim != 1 or self.thetas.shape != (2, 1):
+            print("plot: Error: x and/or y and/or theta dimensions are not appropriate.")
+            return None
+
+        # Generate prediction values for the regression line
+        y_pred = self.predict_(x)
+
+        # Create the visualization
+        plt.figure(figsize=(8, 5))
+
+        # Plot matrix data points
+        plt.scatter(x, y, color='blue', label='Matrix Data Points', zorder=5)
+
+        # Plot predicted points
+        plt.scatter(x, y_pred, color='red', zorder=5, 
+                label='Regression Line')
+
+        # Customize the chart aesthetics
+        title = "Prediction of " + ylabel + " according to " + xlabel
+        title += ". Loss function value: " + str(self.loss_(y.reshape(-1, 1), y_pred))
+        plt.title(title)
+        plt.xlabel(xlabel)
+        plt.ylabel(ylabel)
+        plt.legend()
+        plt.grid(True, linestyle='--', alpha=0.6)
+
+        # Display the plot
+        plt.show()
