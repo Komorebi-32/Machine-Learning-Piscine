@@ -17,7 +17,7 @@ class MyLinearRegression():
     • loss_elem_(self, y, y_hat),
     • loss_(self, y, y_hat).
     """
-    def __init__(self, thetas, alpha=0.001, max_iter=1000):
+    def __init__(self, thetas, alpha=0.001, max_iter=500000):
         self.alpha = alpha
         self.max_iter = max_iter
         self.thetas = thetas
@@ -164,7 +164,7 @@ class MyLinearRegression():
         Args:
         x: has to be an numpy.array, a one-dimensional array of size m.
         y: has to be an numpy.array, a one-dimensional array of size m.
-        theta: has to be an numpy.array, a two-dimensional array of shape 2 * 1.
+        theta: has to be an numpy.array, an array of shape (n + 1) * 1.
         Returns:
         Nothing.
         Raises:
@@ -183,7 +183,7 @@ class MyLinearRegression():
         if x.size == 0 or y.size == 0 or self.thetas.size == 0:
             print("Error: x and/or y and/or theta should not be empty")
             return None
-        if x.ndim != 1 or y.ndim != 1 or self.thetas.shape != (2, 1):
+        if x.ndim != 1 or y.ndim != 1 or self.thetas.ndim == 1 or self.thetas.shape[1] != 1:
             print("plot: Error: x and/or y and/or theta dimensions are not appropriate.")
             return None
 
