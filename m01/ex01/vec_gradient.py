@@ -36,6 +36,6 @@ def simple_gradient(x, y, theta):
         print("Error: x and/or y and/or theta dimensions are not appropriate.")
         return None
     X = add_intercept(x)
-    XT = np.transpose(X)
+    XT = np.transpose(X) # X.T
     J = (XT @ (X @ theta - y)) / y.shape[0]
     return J

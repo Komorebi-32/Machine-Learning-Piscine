@@ -4,7 +4,7 @@ sys.path.insert(0, "../ex01")
 import numpy as np
 from vec_gradient import simple_gradient
 
-def fit_(x, y, theta, alpha, max_iter):
+def fit_(x, y, theta, alpha: float, max_iter):
     """
     Description:
     Fits the model to the training dataset contained in x and y.

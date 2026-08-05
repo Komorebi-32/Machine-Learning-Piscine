@@ -43,7 +43,7 @@ def simple_gradient(x, y, theta):
         return None
     J0 = 0
     J1 = 0
-    for hi, yi, xi in zip(h, y, x):
+    for hi, yi, xi in zip(h.flatten(), y.flatten(), x):
         J0 += hi - yi
         J1 += (hi - yi) * xi
     J0 /= y.shape[0]

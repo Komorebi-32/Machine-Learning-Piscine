@@ -31,7 +31,12 @@ def main():
     i = 10
     linear_model = []
     while i > 0:
-        linear_model[i] = MyLR(np.array([[89.0], [-i]]))
+        linear_model[i] = MyLR(np.array([[i], [89]]))
+        theta1 = np.linspace(-20, 20, 4000)
+        J = np.empty(theta1.shape)
+        for elem in J:
+            elem = linear_model1[i].loss_(Yscore, Y_model1)
+
     
     plt.plot()
 
